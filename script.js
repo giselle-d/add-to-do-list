@@ -14,8 +14,16 @@ function imprimirPendientes(pendientes, index) {
         </div>
         <div class="descripcion">`+ pendientes.descripcion + `</div>
         <i class= "fa fa-times" onClick="eliminarPendiente(`+ index +`)"></i> 
-    </li>`);
+    </li>`
+    );
 } //con index es para mandar a llamar todo el indice y ver cuantos tiene
+
+function eliminarPendiente(index){
+    
+    pendientes.splice(index, 1);
+    imprimirTodosLosPendientes();
+}
+
 function estaCompletado(completado) {
     if (completado) {
         return 'class="done pendientes"';
