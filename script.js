@@ -13,8 +13,17 @@ function imprimirPendientes(pendientes, index) {
             <i class="fa fa-check"></i>
         </div>
         <div class="descripcion">`+ pendientes.descripcion + `</div>
-    </li>`);
+        <i class= "fa fa-times" onClick="eliminarPendiente(`+ index +`)"></i> 
+    </li>`
+    );
+} //con index es para mandar a llamar todo el indice y ver cuantos tiene
+
+function eliminarPendiente(index){
+    
+    pendientes.splice(index, 1);
+    imprimirTodosLosPendientes();
 }
+
 function estaCompletado(completado) {
     if (completado) {
         return 'class="done pendientes"';
@@ -32,15 +41,11 @@ function imprimirTodosLosPendientes() {
     pendientes.forEach(imprimirPendientes);
 }
 
-function agregarTarea() {
-    var nombre = document.getElementById("item").value;
-    if (nombre === '') {
-        alert("Debes escribir algo");
-      } else {
-        pendientes[pendientes.length] = { descripcion: nombre, completado: false }; 
-      }
-    document.getElementById("item").value = "";
-    imprimirTodosLosPendientes();
-} 
 
+function agregarPendiente(){
+    var pendiente = document.getElementById("item").value; //value es solo para mandar a llmar el valor que esta dento del espacio
+    pendientes.push({descripcion: pendiente , completado: false }) //push solo toma un elemento
+    //push es un arreglo de objetos 
+    imprimirTodosLosPendientes();
+}
 imprimirTodosLosPendientes();
